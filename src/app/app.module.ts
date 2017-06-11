@@ -5,12 +5,12 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
-import { MeuPrimeiroComponent } from "./meu-primeiro/meu-primeiro.component";
+import { MonitorComponent } from './monitor/monitor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MeuPrimeiroComponent
+    MonitorComponent
   ],
   imports: [
     BrowserModule,
