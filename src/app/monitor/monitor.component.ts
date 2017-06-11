@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class MonitorComponent implements OnInit {
 
   title: string;
+  monitores: string[] = ["CPU", "Memória"]
 
   constructor() {
     this.title = "Meu monitor"
