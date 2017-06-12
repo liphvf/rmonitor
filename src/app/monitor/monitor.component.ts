@@ -1,4 +1,6 @@
+import { MonitorService } from './monitor.service';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'monitor',
@@ -7,11 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MonitorComponent implements OnInit {
 
-  title: string;
-  monitores: string[] = ["CPU", "Memória"]
+  memoria: number;
+  monitores: string[];
 
-  constructor() {
-    this.title = "Meu monitor"
+  constructor(private monitorService: MonitorService) {
+    this.memoria = 0
+    this.monitores = this.monitorService.getMoniroes();
+  }
+
+  mudarValor(){
+    // while (0 == 0) {
+      this.memoria = +1;
+    // }
   }
 
   ngOnInit() {

@@ -1,3 +1,4 @@
+import { MonitorService } from './monitor/monitor.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -17,7 +18,7 @@ import { MonitorComponent } from './monitor/monitor.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [MonitorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
