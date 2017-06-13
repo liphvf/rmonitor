@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MonitorComponent implements OnInit {
 
-  memoria: number;
+  memoria: any;
   monitores: string[];
 
   constructor(private monitorService: MonitorService) {
@@ -17,13 +17,9 @@ export class MonitorComponent implements OnInit {
     this.monitores = this.monitorService.getMoniroes();
   }
 
-  mudarValor(){
-    // while (0 == 0) {
-      this.memoria = +1;
-    // }
-  }
-
   ngOnInit() {
+
+    setInterval(() => {this.memoria = this.monitorService.getMemory()}, 100);
   }
 
 }
