@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 import { MonitorComponent } from './monitor/monitor.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MonitorComponent } from './monitor/monitor.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ChartsModule
   ],
   providers: [MonitorService],
   bootstrap: [AppComponent]
