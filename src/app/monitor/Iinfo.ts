@@ -1,14 +1,14 @@
 export interface Iinfo {
     Memory:  {
-        total: any;
-        free: any;
-        used: any;
-        active: any;
-        available: any;
-        buffcache: any;
-        swaptotal: any;
-        swapused: any;
-        swapfree: any;
+        total: number;
+        free: number;
+        used: number;
+        active: number;
+        available: number;
+        buffcache: number;
+        swaptotal: number;
+        swapused: number;
+        swapfree: number;
     };
     CpuLoad: {
         avgload: any;

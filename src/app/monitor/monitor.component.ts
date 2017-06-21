@@ -13,7 +13,7 @@ export class MonitorComponent implements OnInit {
   public chart: BaseChartDirective
   
   info: Iinfo;
-  memory: string
+  memory: number
   cpuLoad: string
   errMessage: string = "";
   monitores: string[];
@@ -79,9 +79,9 @@ export class MonitorComponent implements OnInit {
         response => {
           // this.info = response;
           this.info = response;
-          this.memory = response.Memory.used;
+          this.memory = ( response.Memory.active / response.Memory.total) * (100);
           this.cpuLoad = response.CpuLoad.avgload;
-          this.addToChart(response.Memory.used, response.CpuLoad.avgload);
+          this.addToChart(this.memory, response.CpuLoad.currentload);
           // console.log(response);
         }
       );
