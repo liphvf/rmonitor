@@ -11,11 +11,11 @@ export interface Iinfo {
         swapfree: number;
     };
     CpuLoad: {
-        avgload: any;
-        currentload: any;
-        currentload_user: any;
-        currentload_system: any;
-        currentload_nice: any;
-        currentload_irq:any;
+        avgload: number;
+        currentload: number;
+        currentload_user: number;
+        currentload_system: number;
+        currentload_nice: number;
+        currentload_irq:number;
     };
 }

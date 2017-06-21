@@ -11,10 +11,10 @@ import { BaseChartDirective } from "ng2-charts";
 export class MonitorComponent implements OnInit {
   @ViewChild(BaseChartDirective)
   public chart: BaseChartDirective
-  
+
   info: Iinfo;
   memory: number
-  cpuLoad: string
+  cpuLoad: number
   errMessage: string = "";
   monitores: string[];
 
@@ -77,12 +77,10 @@ export class MonitorComponent implements OnInit {
 
       this.monitorService.getInfo().subscribe(
         response => {
-          // this.info = response;
           this.info = response;
-          this.memory = ( response.Memory.active / response.Memory.total) * (100);
-          this.cpuLoad = response.CpuLoad.avgload;
+          this.memory = Math.trunc((response.Memory.active / response.Memory.total) * 100);
+          this.cpuLoad = Math.trunc(response.CpuLoad.currentload);
           this.addToChart(this.memory, response.CpuLoad.currentload);
-          // console.log(response);
         }
       );
 
