@@ -11,6 +11,7 @@ export class MonitorComponent implements OnInit {
 
   info: Iinfo;
   memory: string
+  cpuLoad : string
   errMessage: string = "";
   monitores: string[];
 
@@ -83,7 +84,9 @@ export class MonitorComponent implements OnInit {
       this.monitorService.getInfo().subscribe(
         response => {
           // this.info = response;
-          this.memory = response.memory;
+          this.info  = response;
+          this.memory = response.Memory.used;
+          this.cpuLoad = response.CpuLoad.avgload;
           // console.log(response);
         }
       );
