@@ -20,8 +20,16 @@ router.get('/info', function (req, res) {
     info.Memory = data;
     si.currentLoad().then(cpu => {
       info.CpuLoad = cpu;
+      si.disksIO().then(disk =>{
+        info.DiskIO = disk;
+        si.networkStats().then(network=>{
+          info.Network = network;
+          res.json(info);
+        })
+      })
       // si.currentLoad().then()
-      res.json(info);
+    }).catch(erro=>{
+      console.log(erro);
     });
   });
 });

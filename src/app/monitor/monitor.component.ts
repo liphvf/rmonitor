@@ -15,6 +15,8 @@ export class MonitorComponent implements OnInit {
   info: Iinfo;
   memory: number
   cpuLoad: number
+  diskIO: any
+  network: any
   errMessage: string = "";
   monitores: string[];
 
@@ -25,6 +27,8 @@ export class MonitorComponent implements OnInit {
   public lineChartData: Array<any> = [
     { data: [], label: 'Memória' },
     { data: [], label: 'CPU' },
+    { data: [], label: 'DISK' },
+    { data: [], label: 'NET' },
   ];
   public lineChartLabels: Array<any> = [];
   public lineChartOptions: any = {
@@ -46,15 +50,31 @@ export class MonitorComponent implements OnInit {
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(77,83,96,1)'
+    }, { // dark grey
+      backgroundColor: 'rgba(77,83,96,0.2)',
+      borderColor: 'rgba(77,83,96,1)',
+      pointBackgroundColor: 'rgba(77,83,96,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(77,83,96,1)'
+    }, { // dark grey
+      backgroundColor: 'rgba(77,83,96,0.2)',
+      borderColor: 'rgba(77,83,96,1)',
+      pointBackgroundColor: 'rgba(77,83,96,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(77,83,96,1)'
     }
   ];
   public lineChartLegend: boolean = true;
   public lineChartType: string = 'line';
 
-  public addToChart(memory: number, cpu: number): void {
+  public addToChart(memory: number, cpu: number, disk: any, net: any): void {
     let _lineChartData = this.lineChartData;
     _lineChartData[0].data.push(memory);
     _lineChartData[1].data.push(cpu);
+    _lineChartData[2].data.push(disk);
+    _lineChartData[3].data.push(net);
     this.lineChartLabels.push('');
 
     this.lineChartData = _lineChartData;
@@ -80,7 +100,9 @@ export class MonitorComponent implements OnInit {
           this.info = response;
           this.memory = Math.trunc((response.Memory.active / response.Memory.total) * 100);
           this.cpuLoad = Math.trunc(response.CpuLoad.currentload);
-          this.addToChart(this.memory, response.CpuLoad.currentload);
+          this.diskIO = response.DiskIO.tIO_sec;
+          this.network = response.Network.tx_sec;
+          this.addToChart(this.memory, response.CpuLoad.currentload,this.diskIO,this.network);
         }
       );
 

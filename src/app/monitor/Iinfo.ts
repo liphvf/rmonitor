@@ -18,4 +18,22 @@ export interface Iinfo {
         currentload_nice: number;
         currentload_irq:number;
     };
+    DiskIO:{
+        rIO:any;
+        wIO:any;
+        tIO:any
+        rIO_sec:any;
+        wIO_sec:any;
+        tIO_sec:any;
+        ms:any;
+    };
+    Network:{
+        iface:any;
+        operstate:any;
+        rx:any;
+        tx:any;
+        rx_sec:any;
+        tx_sec:any;
+        ms:any;
+    };
 }
