@@ -15,7 +15,7 @@ export class MonitorComponent implements OnInit {
   info: Iinfo;
   memory: number
   cpuLoad: number
-  diskIO: any
+  disk: any
   network: any
   errMessage: string = "";
   monitores: string[];
@@ -114,9 +114,9 @@ export class MonitorComponent implements OnInit {
           // this.info.Network.rx_sec = this.info.Network.rx_sec / 1024
           this.memory = Math.trunc((response.Memory.active / response.Memory.total) * 100);
           this.cpuLoad = Math.trunc(response.CpuLoad.currentload);
-          this.diskIO = response.DiskIO.tIO_sec / 1024;
+          this.disk = response.FsStatus.tx_sec /1024
           this.network = response.Network.tx_sec / 1024;
-          this.addToChart(this.memory, response.CpuLoad.currentload, this.diskIO, this.network);
+          this.addToChart(this.memory, response.CpuLoad.currentload, this.disk, this.network);
         }
       );
 

@@ -21,7 +21,7 @@ router.get('/info', function (req, res) {
     si.currentLoad().then(cpu => {
       info.CpuLoad = cpu;
       si.fsStats().then(disk =>{
-        info.DiskIO = disk;
+        info.FsStats = disk;
         si.networkStats().then(network=>{
           info.Network = network;
           res.json(info);
