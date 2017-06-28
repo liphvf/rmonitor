@@ -27,8 +27,8 @@ export class MonitorComponent implements OnInit {
   public lineChartData: Array<any> = [
     { data: [], label: 'Memória' },
     { data: [], label: 'CPU' },
-    { data: [], label: 'DISK' },
-    { data: [], label: 'NET' },
+    // { data: [], label: 'DISK' },
+    // { data: [], label: 'NET' },
   ];
   public lineChartLabels: Array<any> = [];
   public lineChartOptions: any = {
@@ -73,9 +73,22 @@ export class MonitorComponent implements OnInit {
     let _lineChartData = this.lineChartData;
     _lineChartData[0].data.push(memory);
     _lineChartData[1].data.push(cpu);
-    _lineChartData[2].data.push(disk);
-    _lineChartData[3].data.push(net);
-    this.lineChartLabels.push('');
+    // _lineChartData[2].data.push(disk);
+    // _lineChartData[3].data.push(net);
+
+    let quantidadePontos: number = 30;
+
+    if (_lineChartData[0].data.length < quantidadePontos) {
+      this.lineChartLabels.push('');
+    }
+
+    while (_lineChartData[0].data.length > quantidadePontos) {
+      _lineChartData[0].data.shift();
+      console.log(_lineChartData[0].data);
+    }
+    while (_lineChartData[1].data.length > quantidadePontos) {
+      _lineChartData[1].data.shift();
+    }
 
     this.lineChartData = _lineChartData;
 
@@ -98,11 +111,12 @@ export class MonitorComponent implements OnInit {
       this.monitorService.getInfo().subscribe(
         response => {
           this.info = response;
+          // this.info.Network.rx_sec = this.info.Network.rx_sec / 1024
           this.memory = Math.trunc((response.Memory.active / response.Memory.total) * 100);
           this.cpuLoad = Math.trunc(response.CpuLoad.currentload);
-          this.diskIO = response.DiskIO.tIO_sec;
-          this.network = response.Network.tx_sec;
-          this.addToChart(this.memory, response.CpuLoad.currentload,this.diskIO,this.network);
+          this.diskIO = response.DiskIO.tIO_sec / 1024;
+          this.network = response.Network.tx_sec / 1024;
+          this.addToChart(this.memory, response.CpuLoad.currentload, this.diskIO, this.network);
         }
       );
 

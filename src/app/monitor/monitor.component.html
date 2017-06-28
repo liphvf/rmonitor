@@ -1,16 +1,9 @@
-
 <div class="row">
   <div class="col-md-6" style="display: block; height: 400px; width: 400px;">
     <div style="display: block;">
-    <canvas baseChart width="400" height="400"
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+      <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
     </div>
   </div>
 </div>
@@ -22,11 +15,12 @@
     Carga de Cpu: {{cpuLoad}} %
   </li>
   <li>
-    Uso de Disco: {{diskIO}}
+    Uso de Disco: {{diskIO}} Kbps
   </li>
   <li>
-    Uso de Net: {{network}}
+    Uso de Net Up: {{network}} Kbps
   </li>
+  <!--<li> Uso de Net Down: {{networkDown}} Kbps</li>-->
 
 
 </ul>
