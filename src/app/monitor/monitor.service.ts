@@ -12,7 +12,7 @@ export class MonitorService {
   constructor(private http: Http) { }
 
   getInfo(): Observable<Iinfo> {
-    return this.http.get("http://127.0.0.1:3000/api/info/", { headers: this.getHeaders() }).map((res: Response) => <Iinfo>res.json());
+    return this.http.get("http://192.168.43.26:3000/api/info/", { headers: this.getHeaders() }).map((res: Response) => <Iinfo>res.json());
 
   }
 

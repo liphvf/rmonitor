@@ -18,7 +18,7 @@ export interface Iinfo {
         currentload_nice: number;
         currentload_irq:number;
     };
-    FsStatus:{
+    FsStats:{
         rx:any;
         ww:any;
         tx:any

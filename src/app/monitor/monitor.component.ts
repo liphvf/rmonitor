@@ -114,8 +114,8 @@ export class MonitorComponent implements OnInit {
           // this.info.Network.rx_sec = this.info.Network.rx_sec / 1024
           this.memory = Math.trunc((response.Memory.active / response.Memory.total) * 100);
           this.cpuLoad = Math.trunc(response.CpuLoad.currentload);
-          this.disk = response.FsStatus.tx_sec /1024
-          this.network = response.Network.rx_sec / 1024;
+          this.disk = (response.FsStats.tx_sec / 1024).toFixed(2);
+          this.network = (response.Network.rx_sec / 1024).toFixed(2);
           this.addToChart(this.memory, response.CpuLoad.currentload, this.disk, this.network);
         }
       );
